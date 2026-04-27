@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hospital Receipt System</title>
+</head>
+<body>
+<h1>Hospital Receipt System</h1>
+    <div th:replace="fragments/navbar :: navbar"></div>
+<ul>
+    <li><a th:href="@{/patients}">Manage Patients</a></li>
+    <li><a th:href="@{/doctors}">Manage Doctors</a></li>
+    <li><a th:href="@{/inventory}">Manage Inventory (Medicines)</a></li>
+    <li><a th:href="@{/appointments/new}">Create New Appointment (Receipt)</a></li>
+    <li><a th:href="@{/appointments}">View All Receipts</a></li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Billing History by Patient</title>
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<h1>Billing History by Patient</h1>
+<form method="get">
+    Patient:
+    <select name="patientId">
+        <option value="">-- Select --</option>
+        <option th:each="p : ${patients}" th:value="${p.id}"
+                th:text="${p.firstName + ' ' + p.lastName}"></option>
+    </select>
+    <button type="submit">Show</button>
+</form>
+<div th:if="${patient != null}">
+    <h2 th:text="${patient.firstName + ' ' + patient.lastName}"></h2>
+    <table border="1" th:if="${!billings.isEmpty()}">
+        <tr><th>Billing ID</th><th>Amount</th><th>Date</th><th>Payment Status</th></tr>
+        <tr th:each="b : ${billings}">
+            <td th:text="${b.id}"></td>
+            <td th:text="${b.amount}"></td>
+            <td th:text="${b.billingDate}"></td>
+            <td th:text="${b.paymentStatus}"></td>
+        </tr>
+    </table>
+    <p th:if="${billings.isEmpty()}">No billing records for this patient.</p>
+</div>
+</body>
+</html>

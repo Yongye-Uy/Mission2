@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Receipt</title>
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<h1>Appointment Receipt</h1>
+<p>Appointment ID: <span th:text="${appointment.id}"></span></p>
+<p>Date: <span th:text="${appointment.appointmentDate}"></span></p>
+<p>Patient: <span th:text="${patient.firstName + ' ' + patient.lastName}"></span></p>
+<p>Doctor: <span th:text="${doctor.firstName + ' ' + doctor.lastName}"></span></p>
+<p>Status: <span th:text="${appointment.status}"></span></p>
+<h3>Prescribed Medicines</h3>
+<ul>
+    <li th:each="item : ${appointment.prescribedItems}">
+        <span th:text="${medicineNames[item.inventoryItemId]}"></span> - Qty: <span th:text="${item.quantity}"></span>
+    </li>
+</ul>
+<p><strong>Note:</strong> Billing is now managed separately. <a th:href="@{/billings}">View billings</a></p>
+<a th:href="@{/appointments}">Back to list</a>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Inventory</title>
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<h1>Inventory (Medicines)</h1>
+<a th:href="@{/inventory/new}">Add New Item</a>
+<table border="1">
+    <tr>
+        <th>Item Name</th><th>Quantity</th><th>Expiration Date</th>
+    </tr>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.itemName}"></td>
+        <td th:text="${item.quantity}"></td>
+        <td th:text="${item.expirationDate}"></td>
+    </tr>
+</table>
+</body>
+</html>

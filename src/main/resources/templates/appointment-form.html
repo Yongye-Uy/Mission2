@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New Appointment</title>
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<h1>Create Appointment</h1>
+<form th:action="@{/appointments}" method="post">
+    Patient:
+    <select name="patientId">
+        <option value="">-- Select --</option>
+        <option th:each="p : ${patients}" th:value="${p.id}"
+                th:text="${p.firstName + ' ' + p.lastName}"></option>
+    </select><br/>
+    Doctor:
+    <select name="doctorId">
+        <option value="">-- Select --</option>
+        <option th:each="d : ${doctors}" th:value="${d.id}"
+                th:text="${d.firstName + ' ' + d.lastName + ' (' + d.specialization + ')'}"></option>
+    </select><br/>
+    Appointment Date: <input type="datetime-local" name="appointmentDate"/><br/>
+    Status: <input type="text" name="status" value="completed"/><br/>
+
+    <h3>Prescribed Medicines</h3>
+    <div id="medicine-list">
+        <div class="med-row">
+            Medicine:
+            <select name="invIds">
+                <option value="">-- Select --</option>
+                <option th:each="inv : ${inventory}" th:value="${inv.id}"
+                        th:text="${inv.itemName + ' (Stock: ' + inv.quantity + ')'}"></option>
+            </select>
+            Quantity: <input type="number" name="quantities" value="1" min="1"/>
+        </div>
+    </div>
+    <button type="button" onclick="addMedicineRow()">Add Another Medicine</button><br/><br/>
+    <button type="submit">Save Appointment</button>
+</form>
+
+<script>
+    function addMedicineRow() {
+        const container = document.getElementById('medicine-list');
+        const newRow = document.createElement('div');
+        newRow.className = 'med-row';
+        newRow.innerHTML = `
+                Medicine:
+                <select name="invIds">
+                    <option value="">-- Select --</option>
+                    <!-- We'll manually copy the options with JavaScript below -->
+                </select>
+                Quantity: <input type="number" name="quantities" value="1" min="1"/>
+            `;
+        // Clone options from the first select to avoid Thymeleaf issues
+        const firstSelect = container.querySelector('select');
+        const newSelect = newRow.querySelector('select');
+        newSelect.innerHTML = firstSelect.innerHTML;
+        container.appendChild(newRow);
+    }
+</script>
+</body>
+</html>

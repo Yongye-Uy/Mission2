@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Unpaid Billings</title>
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<h1>Unpaid Billings</h1>
+<table border="1" th:if="${!unpaid.isEmpty()}">
+    <tr>
+        <th>Patient</th>
+        <th>Amount</th>
+        <th>Date</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="entry : ${unpaid}">
+        <td th:text="${entry.patientName}"></td>
+        <td th:text="${entry.billing.amount}"></td>
+        <td th:text="${entry.billing.billingDate}"></td>
+        <td>
+            <form th:action="@{/billings/{id}/pay(id=${entry.billing.id})}" method="post" style="display:inline;">
+                <button type="submit">Mark as Paid</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<p th:if="${unpaid.isEmpty()}">All bills are paid – great job!</p>
+</body>
+</html>

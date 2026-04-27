@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Inventory Near Expiration</title>
+</head>
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+<h1>Inventory Items Expiring within 30 Days</h1>
+<table border="1" th:if="${!items.isEmpty()}">
+    <tr><th>Item Name</th><th>Quantity</th><th>Expiration Date</th></tr>
+    <tr th:each="i : ${items}">
+        <td th:text="${i.itemName}"></td>
+        <td th:text="${i.quantity}"></td>
+        <td th:text="${i.expirationDate}"></td>
+    </tr>
+</table>
+<p th:if="${items.isEmpty()}">No items are near expiration.</p>
+</body>
+</html>

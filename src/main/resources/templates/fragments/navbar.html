@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<nav th:fragment="navbar">
+    <div>
+    <a th:href="@{/}">Home</a> |
+    <a th:href="@{/patients}">Patients</a> |
+    <a th:href="@{/doctors}">Doctors</a> |
+    <a th:href="@{/inventory}">Inventory</a> |
+    <a th:href="@{/appointments/new}">New Appointment</a> |
+    <a th:href="@{/appointments}">Appointments</a> |
+    <a th:href="@{/billings/new}">New Billing</a> |
+    <a th:href="@{/billings}">Billings</a> |
+    </div>
+    <div>
+    <strong>Reports:</strong>
+    <a th:href="@{/reports/appointments-by-patient}">Appt. by Patient</a> |
+    <a th:href="@{/reports/appointments-by-doctor}">Appt. by Doctor</a> |
+    <a th:href="@{/reports/billing-by-patient}">Billing by Patient</a> |
+    <a th:href="@{/reports/inventory-near-expiration}">Near Expiry</a> |
+    <a th:href="@{/reports/unpaid-billings}">Unpaid Billings</a>
+
+    </div>
+</nav>
+</body>
+</html>

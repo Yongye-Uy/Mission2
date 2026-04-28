@@ -2,8 +2,6 @@ package com.hospital.mission2.controller;
 
 import com.hospital.mission2.model.*;
 import com.hospital.mission2.service.HospitalService;
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -279,21 +277,5 @@ public class MainController {
             service.saveBilling(b);
         }
         return "redirect:/reports/unpaid-billings";
-    }
-
-
-    @RequestMapping("/error")
-    public String handleError(HttpServletRequest request) {
-        Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-
-        if (status != null) {
-            int statusCode = Integer.parseInt(status.toString());
-            if (statusCode == 404) {
-                return "error-404"; // Return specific view
-            } else if (statusCode == 500) {
-                return "error-500";
-            }
-        }
-        return "error";
     }
 }

@@ -8,13 +8,13 @@
 <h1>Create Appointment</h1>
 <form th:action="@{/appointments}" method="post">
     Patient:
-    <select name="patientId">
+    <select name="patientId" required>
         <option value="">-- Select --</option>
         <option th:each="p : ${patients}" th:value="${p.id}"
                 th:text="${p.firstName + ' ' + p.lastName}"></option>
     </select><br/>
     Doctor:
-    <select name="doctorId">
+    <select name="doctorId" required>
         <option value="">-- Select --</option>
         <option th:each="d : ${doctors}" th:value="${d.id}"
                 th:text="${d.firstName + ' ' + d.lastName + ' (' + d.specialization + ')'}"></option>

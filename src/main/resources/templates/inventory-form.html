@@ -7,9 +7,9 @@
 <div th:replace="fragments/navbar :: navbar"></div>
 <h1>Add Medicine / Inventory Item</h1>
 <form th:action="@{/inventory}" th:object="${item}" method="post">
-  Item Name: <input type="text" th:field="*{itemName}"/><br/>
-  Quantity: <input type="number" th:field="*{quantity}"/><br/>
-  Expiration Date: <input type="date" th:field="*{expirationDate}"/><br/>
+  Item Name: <input type="text" required th:field="*{itemName}"/><br/>
+  Quantity: <input type="number" required th:field="*{quantity}"/><br/>
+  Expiration Date: <input type="date" required th:field="*{expirationDate}"/><br/>
   <button type="submit">Save</button>
 </form>
 </body>

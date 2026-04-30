@@ -6,20 +6,20 @@
 <h1>Create Billing</h1>
 <form th:action="@{/billings}" th:object="${billing}" method="post">
     Patient:
-    <select th:field="*{patientId}">
+    <select th:field="*{patientId}" required>
         <option value="">-- Select --</option>
         <option th:each="p : ${patients}" th:value="${p.id}"
                 th:text="${p.firstName + ' ' + p.lastName}"></option>
     </select><br/>
-    Appointment (optional):
-    <select th:field="*{appointmentId}">
+    Appointment:
+    <select th:field="*{appointmentId}" required>
         <option value="">-- None --</option>
         <option th:each="a : ${appointments}" th:value="${a.id}"
                 th:text="${a.id + ' (' + a.appointmentDate + ')'}"></option>
     </select><br/>
     Amount: <input type="number" step="0.01" th:field="*{amount}"/><br/>
     Payment Status:
-    <select th:field="*{paymentStatus}">
+    <select th:field="*{paymentStatus}" required>
         <option value="unpaid">Unpaid</option>
         <option value="paid">Paid</option>
     </select><br/>

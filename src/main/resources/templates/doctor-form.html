@@ -7,10 +7,10 @@
 <div th:replace="fragments/navbar :: navbar"></div>
 <h1>Add Doctor</h1>
 <form th:action="@{/doctors}" th:object="${doctor}" method="post">
-    First Name: <input type="text" th:field="*{firstName}"/><br/>
-    Last Name: <input type="text" th:field="*{lastName}"/><br/>
-    Specialization: <input type="text" th:field="*{specialization}"/><br/>
-    Schedule: <input type="text" th:field="*{schedule}"/><br/>
+    First Name: <input type="text" required th:field="*{firstName}"/><br/>
+    Last Name: <input type="text" required th:field="*{lastName}"/><br/>
+    Specialization: <input type="text" required th:field="*{specialization}"/><br/>
+    Schedule: <input type="text" required th:field="*{schedule}"/><br/>
     <button type="submit">Save</button>
 </form>
 </body>
